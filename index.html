@@ -1,10 +1,773 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#fff9f4"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Mis rutinas"><title>Mis rutinas · Xime</title><style>
-:root{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;color:#493943;background:#fff9f4;font-synthesis:none}*{box-sizing:border-box}body{margin:0}button{font:inherit}header{position:sticky;top:0;z-index:10;background:rgba(255,249,244,.96);backdrop-filter:blur(14px);border-bottom:1px solid #eee1df;padding:12px 16px 10px}.wrap{max-width:650px;margin:auto}h1{font-family:Georgia,serif;font-size:25px;margin:0;color:#763f56;letter-spacing:-.5px}.sub{font-size:12px;color:#856f7a;margin:3px 0 10px}.overview{display:flex;gap:10px;align-items:center}.progress{display:flex;gap:8px;flex:1}.mini{display:flex;align-items:center;gap:7px;flex:1;background:white;border:1px solid #f0e4df;border-radius:14px;padding:7px 9px;text-decoration:none;color:inherit;min-width:0}.ring{width:43px;height:43px;flex:none;transform:rotate(-90deg)}.ring circle{fill:none;stroke-width:6}.ring .base{stroke:#f0e7e3}.ring .active{stroke:var(--ring);stroke-linecap:round;transition:stroke-dasharray .3s ease}.mini strong{display:block;font-size:12px}.mini small{display:block;font-size:11px;color:#887881}.date{font-size:12px;color:#887881}.section{margin:17px 13px 22px;border-radius:22px;padding:16px 12px 12px;border:1px solid var(--border);background:var(--bg)}.day{--bg:#fff4d6;--border:#f2dfa7;--accent:#9d6d14;--mark:#d39b25}.night{--bg:#fdebf1;--border:#f2cfdd;--accent:#9b496b;--mark:#d27c9d}.sectiontop{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 5px 12px}.section h2{font-family:Georgia,serif;font-size:23px;color:var(--accent);margin:0}.section .status{font-size:12px;color:var(--accent);font-weight:650}.track{height:5px;border-radius:8px;background:rgba(100,70,70,.1);overflow:hidden;margin:0 5px 13px}.fill{height:100%;width:0;background:var(--mark);border-radius:8px;transition:width .25s}.item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:#fffdfb;border:1px solid rgba(100,70,70,.08);border-radius:15px;margin:7px 0;padding:13px 12px;min-height:66px;color:#493943;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}.item:focus-visible{outline:3px solid #956cda;outline-offset:2px}.item.done{background:rgba(255,255,255,.63);border-color:var(--border)}.check{width:27px;height:27px;border-radius:9px;border:2px solid #d8c7c5;flex:none;display:grid;place-items:center;color:white;font-size:17px;font-weight:800}.done .check{background:var(--mark);border-color:var(--mark)}.time{font-size:12px;font-weight:750;color:var(--accent);margin-bottom:3px}.name{font-size:15px;font-weight:650;line-height:1.27}.detail{font-size:12px;color:#86747d;line-height:1.35;margin-top:4px}.done .name{color:#75656c}.note{margin:10px 7px 0;color:#826d77;font-size:12px;text-align:center;min-height:18px}.footer{text-align:center;color:#93818a;font-size:12px;padding:0 20px 35px}.footer button{border:0;background:none;color:#8e5971;text-decoration:underline;padding:8px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#503f49;color:white;padding:10px 16px;border-radius:22px;font-size:13px;z-index:20;box-shadow:0 5px 20px #0002;opacity:0;pointer-events:none;transition:opacity .2s}.toast.show{opacity:1}@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}@media(min-width:600px){.section{margin-left:0;margin-right:0}}
-</style></head><body><header><div class="wrap"><h1>Mis rutinas ♡</h1><div class="sub" id="today">Un paso a la vez</div><div class="overview"><div class="progress"><a class="mini" href="#manana" aria-label="Ir a mi mañana"><svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-day" class="active" style="--ring:#d5a02d" cx="24" cy="24" r="19"/></svg><span><strong>☀️ Mañana</strong><small id="count-day">0 de 17</small></span></a><a class="mini" href="#noche" aria-label="Ir a mi noche"><svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-night" class="active" style="--ring:#d27c9d" cx="24" cy="24" r="19"/></svg><span><strong>🌙 Noche</strong><small id="count-night">0 de 11</small></span></a></div></div></div></header><main class="wrap"><section id="manana" class="section day"><div class="sectiontop"><h2>☀️ Mi mañana</h2><span class="status" id="status-day">Lista para empezar</span></div><div class="track"><div class="fill" id="fill-day"></div></div><div id="list-day"><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',0)"><span class="check" aria-hidden="true"></span><span><div class="time">2:00 a. m.</div><div class="name">Despertar</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',1)"><span class="check" aria-hidden="true"></span><span><div class="time">2:00–2:30</div><div class="name">Meditación</div><div class="detail">30 minutos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',2)"><span class="check" aria-hidden="true"></span><span><div class="time">2:30–2:45</div><div class="name">Estiramientos</div><div class="detail">15 minutos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',3)"><span class="check" aria-hidden="true"></span><span><div class="time">2:45–3:00</div><div class="name">Cambiarme y prepararme para entrenar</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',4)"><span class="check" aria-hidden="true"></span><span><div class="time">3:00–3:15</div><div class="name">Ir por mis 2 L de agua y preparar mi café</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',5)"><span class="check" aria-hidden="true"></span><span><div class="time">3:15–4:00</div><div class="name">Tiempo tranquilo / Kindle</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',6)"><span class="check" aria-hidden="true"></span><span><div class="time">4:00–4:30</div><div class="name">Café final y alistarme para entrenar</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',7)"><span class="check" aria-hidden="true"></span><span><div class="time">4:30–6:30</div><div class="name">Gimnasio en casa</div><div class="detail">Fuerza / cardio / entrenamiento</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',8)"><span class="check" aria-hidden="true"></span><span><div class="time">6:30–6:50</div><div class="name">Amanecer + grounding en el jardín</div><div class="detail">20 minutos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',9)"><span class="check" aria-hidden="true"></span><span><div class="time">6:50–7:05</div><div class="name">Luz infrarroja</div><div class="detail">15 minutos (cuerpo)</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',10)"><span class="check" aria-hidden="true"></span><span><div class="time">7:05–7:30</div><div class="name">Sauna o vapor</div><div class="detail">25 minutos (según día)</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',11)"><span class="check" aria-hidden="true"></span><span><div class="time">7:30–7:50</div><div class="name">Ducha</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',12)"><span class="check" aria-hidden="true"></span><span><div class="time">7:50–8:20</div><div class="name">Hidratación corporal</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',13)"><span class="check" aria-hidden="true"></span><span><div class="time">8:20–8:50</div><div class="name">NuFACE NuBODY</div><div class="detail">5 minutos por zona (abdomen, glúteos, muslos y brazos)</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',14)"><span class="check" aria-hidden="true"></span><span><div class="time">8:50–9:20</div><div class="name">Tomar 30 minutos de sol</div><div class="detail">Para sintetizar vitamina D</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',15)"><span class="check" aria-hidden="true"></span><span><div class="time">9:20–9:50</div><div class="name">Skincare de mañana</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('day',16)"><span class="check" aria-hidden="true"></span><span><div class="time">9:50 en adelante</div><div class="name">Continuar con mi día</div></span></button></div><p class="note" id="note-day">Cada paso cuenta ✨</p></section><section id="noche" class="section night"><div class="sectiontop"><h2>🌙 Mi noche</h2><span class="status" id="status-night">Lista para empezar</span></div><div class="track"><div class="fill" id="fill-night"></div></div><div id="list-night"><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',0)"><span class="check" aria-hidden="true"></span><span><div class="time">2:00–2:30 p. m.</div><div class="name">Inicio de rutina · Bajar estimulación</div><div class="detail">Luces cálidas moderadas-bajas · Lentes amarillos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',1)"><span class="check" aria-hidden="true"></span><span><div class="time">2:30–3:00 p. m.</div><div class="name">Actividades tranquilas · Preparar ambiente</div><div class="detail">Luces cálidas tenues · Lentes amarillos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',2)"><span class="check" aria-hidden="true"></span><span><div class="time">3:00–3:30 p. m.</div><div class="name">Ducha</div><div class="detail">Luces cálidas muy tenues · Lentes ámbar</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',3)"><span class="check" aria-hidden="true"></span><span><div class="time">3:30–4:00 p. m.</div><div class="name">Máscara FAQ 202</div><div class="detail">Luces cálidas tenues · Lentes ámbar</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',4)"><span class="check" aria-hidden="true"></span><span><div class="time">4:00–4:30 p. m.</div><div class="name">Skincare</div><div class="detail">Apagar luces cálidas · Encender luces rojas · Cerrar blackout · Lentes rojos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',5)"><span class="check" aria-hidden="true"></span><span><div class="time">4:30–4:45 p. m.</div><div class="name">Stretching relajante</div><div class="detail">15 minutos · Solo luces rojas · Lentes rojos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',6)"><span class="check" aria-hidden="true"></span><span><div class="time">4:45–5:00 p. m.</div><div class="name">Actividad tranquila</div><div class="detail">Opcional: lectura o música suave · Luces rojas · Lentes rojos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',7)"><span class="check" aria-hidden="true"></span><span><div class="time">5:00–5:30 p. m.</div><div class="name">Cena</div><div class="detail">Cena ligera · Luces rojas · Lentes rojos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',8)"><span class="check" aria-hidden="true"></span><span><div class="time">5:30–5:45 p. m.</div><div class="name">Higiene final · Preparar CPAP y recámara</div><div class="detail">Luces rojas muy tenues · Lentes rojos</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',9)"><span class="check" aria-hidden="true"></span><span><div class="time">5:45–6:00 p. m.</div><div class="name">En cama · Relajación</div><div class="detail">Apagar luces · Blackout · Lentes rojos solo si necesitas ver una pantalla</div></span></button><button type="button" class="item" aria-pressed="false" onclick="window.ximeToggle&&window.ximeToggle('night',10)"><span class="check" aria-hidden="true"></span><span><div class="time">6:00 p. m.</div><div class="name">Dormir</div><div class="detail">Oscuridad total · Sin lentes</div></span></button></div><p class="note" id="note-night">Tu descanso también es un logro ♡</p></section><div class="footer">✓ Cada cambio se guarda en este dispositivo.<br>Las listas comienzan de nuevo cada día, hora de León.<br><button id="help" type="button">¿Cómo funciona?</button></div></main><div id="toast" class="toast" role="status" aria-live="polite"></div><script>
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fffaf7">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Mis rutinas">
+<title>Mis rutinas · Xime</title>
+<style>
+/* ===========================================================
+   PALETA · crema original de Xime
+   =========================================================== */
+:root{
+  --papel:#fffaf7;
+  --tarjeta:#ffffff;
+  --tarjeta-2:#fffdfc;
+  --tinta:#46333d;
+  --tinta-2:#746069;
+  --tinta-3:#8a7580;
+  --borde:#f1e2e4;
+  --titulo:#8a3a5c;
+  --verde:#15503a;
+  --oro:#c0962f;
+
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text",system-ui,sans-serif;
+  color:var(--tinta);background:var(--papel);font-synthesis:none;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel)}
+button{font:inherit}
+
+header{position:sticky;top:0;z-index:10;background:rgba(255,250,247,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--borde);padding:12px 16px 10px}
+.wrap{max-width:650px;margin:auto}
+h1{font-family:Georgia,serif;font-size:25px;margin:0;color:var(--titulo);letter-spacing:-.5px}
+.sub{font-size:12px;color:var(--tinta-3);margin:3px 0 10px;text-transform:capitalize}
+.overview{display:flex;gap:10px;align-items:center}
+.progress{display:flex;gap:8px;flex:1}
+.mini{display:flex;align-items:center;gap:7px;flex:1;background:var(--tarjeta);border:1px solid #f2e2e6;border-radius:14px;padding:7px 9px;text-decoration:none;color:inherit;min-width:0}
+.ring{width:43px;height:43px;flex:none;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:6}
+.ring .base{stroke:#f3e7ea}
+.ring .active{stroke:var(--ring);stroke-linecap:round;transition:stroke-dasharray .3s ease}
+.mini strong{display:block;font-size:12px}
+.mini small{display:block;font-size:11px;color:var(--tinta-3)}
+
+/* ---------- frase ---------- */
+.frase{margin:15px 13px 0;padding:15px 16px;border-radius:18px;background:#fdf1f4;border:1px solid #f0d6de;text-align:center}
+.frase p{margin:0;font-family:Georgia,serif;font-size:16px;line-height:1.5;color:var(--titulo)}
+.frase span{display:block;margin-top:9px;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#b08d57}
+
+/* ---------- secciones ---------- */
+.section{margin:17px 13px 22px;border-radius:22px;padding:16px 12px 12px;border:1px solid var(--border);background:var(--bg)}
+.reto {--bg:#f1f7f2;--border:#cfe2d4;--accent:#15503a;--mark:#c0962f}
+.day  {--bg:#fff6e2;--border:#f3e0ae;--accent:#9a6616;--mark:#cf9b2c}
+.night{--bg:#fbeaf2;--border:#f0cadd;--accent:#9b3f6b;--mark:#cf74a2}
+.hist {--bg:#f7f3fa;--border:#e2d6ea;--accent:#6b4a7f;--mark:#9b7bab}
+.sectiontop{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:0 5px 12px}
+.section h2{font-family:Georgia,serif;font-size:23px;color:var(--accent);margin:0}
+.section .status{font-size:12px;color:var(--accent);font-weight:650}
+.track{height:5px;border-radius:8px;background:rgba(100,70,70,.1);overflow:hidden;margin:0 5px 13px}
+.fill{height:100%;width:0;background:var(--mark);border-radius:8px;transition:width .25s}
+
+.item{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--tarjeta-2);border:1px solid rgba(100,70,70,.08);border-radius:15px;margin:7px 0;padding:13px 12px;min-height:66px;color:var(--tinta);cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.item:focus-visible{outline:3px solid #956cda;outline-offset:2px}
+.item.done{background:rgba(255,255,255,.63);border-color:var(--border)}
+.check{width:27px;height:27px;border-radius:9px;border:2px solid #e0cbd2;flex:none;display:grid;place-items:center;color:#fff;font-size:17px;font-weight:800}
+.done .check{background:var(--mark);border-color:var(--mark)}
+.time{font-size:12px;font-weight:750;color:var(--accent);margin-bottom:3px}
+.name{font-size:15px;font-weight:650;line-height:1.27}
+.detail{font-size:12px;color:#8a7580;line-height:1.35;margin-top:4px}
+.done .name{color:var(--tinta-2)}
+.note{margin:10px 7px 0;color:#86707b;font-size:12px;text-align:center;min-height:18px}
+
+/* ---------- la hoja del mes ---------- */
+.mesnav{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:0 2px 12px}
+.mesnav button{
+  width:34px;height:34px;flex:none;border-radius:50%;border:1px solid #d6e2d8;
+  background:#fbfdfb;color:var(--verde);font-size:17px;line-height:1;cursor:pointer;
+}
+.mesnav button:disabled{opacity:.3;cursor:default}
+.mesnav .mid{text-align:center;flex:1;min-width:0}
+.mesnav .mid strong{display:block;font-family:Georgia,serif;font-size:21px;color:var(--verde);font-weight:400}
+.mesnav .mid small{display:block;font-size:10.5px;color:#7e8a80;margin-top:2px}
+
+.hoja{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border-radius:10px}
+.hoja th{
+  background:var(--verde);color:#f3efe6;font-size:10.5px;letter-spacing:.7px;
+  text-transform:uppercase;font-weight:700;padding:10px 6px;text-align:center;
+}
+.hoja th.izq{text-align:left;padding-left:12px}
+.hoja td{padding:0;border:0;background:transparent}
+.hoja tbody tr:nth-child(odd) td{background:#e6efe8}
+.hoja tbody tr.hoy td{background:#fcf0dc}
+.hoja tbody tr.hoy td:first-child{box-shadow:inset 3px 0 0 var(--oro)}
+.cdia{padding:0 0 0 12px;font-size:13.5px;white-space:nowrap;color:var(--tinta)}
+.cdia b{font-weight:750;margin-right:5px}
+.cdia span{color:#7e8a80;font-size:12px}
+.ccheck{text-align:center;width:22%}
+.cpeso{text-align:right;padding-right:10px;width:26%}
+.toque{
+  display:inline-grid;place-items:center;width:100%;min-height:42px;
+  background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;
+}
+.caja{
+  width:21px;height:21px;border-radius:5px;border:1.6px solid var(--oro);
+  display:grid;place-items:center;color:#fff;font-size:13px;font-weight:800;background:#fffdfa;
+}
+.toque.on .caja{background:var(--oro)}
+.ipeso{
+  width:68px;padding:7px 8px;border-radius:8px;border:1px solid var(--oro);
+  background:#fffdfa;color:var(--tinta);font-size:14px;font-family:inherit;text-align:center;
+}
+.ipeso:focus{outline:none;box-shadow:0 0 0 3px rgba(201,162,39,.25)}
+.hoja-nota{margin:12px 4px 0;font-size:11.5px;color:#7e8a80}
+.cpill{text-align:center;width:30%;padding:9px 4px}
+.pill{
+  display:inline-block;min-width:54px;padding:5px 9px;border-radius:999px;
+  font-size:12px;font-weight:750;border:1.4px solid #d8cfe0;background:#fffdff;color:#7e748a;
+}
+.pill.full{background:var(--oro);border-color:var(--oro);color:#fff}
+.pill.part{border-color:var(--oro);background:#fffaf0;color:#8a6b14}
+.pill.cero{opacity:.45}
+.hist .hoja th{background:var(--accent)}
+.hist .hoja tbody tr:nth-child(odd) td{background:#efe7f4}
+.hist .hoja tbody tr.hoy td{background:#fcf0dc}
+.hist .resumen{border-top-color:#e2d6ea}
+.hist .resumen div b{color:var(--accent)}
+.hist .mesnav .mid strong{color:var(--accent)}
+.hist .mesnav button{border-color:#e2d6ea;background:#fdfbfe;color:var(--accent)}
+.resumen{display:flex;gap:18px;flex-wrap:wrap;margin:14px 4px 0;padding-top:12px;border-top:1px solid #d7e4da}
+.resumen div b{display:block;font-family:Georgia,serif;font-size:19px;color:var(--verde);line-height:1.2}
+.resumen div small{font-size:10px;color:#7e8a80;letter-spacing:.3px}
+
+/* ---------- pie ---------- */
+.footer{text-align:center;color:#947f89;font-size:12px;padding:0 20px 14px;line-height:1.7}
+.footer button{border:0;background:none;color:#9b4a6c;text-decoration:underline;padding:8px;cursor:pointer}
+.mireg{text-align:center;padding:0 20px 40px}
+.mireg a{display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;border:1px solid #d3e0d6;background:#f6fbf7;color:#1d5c44;text-decoration:none;font-size:12.5px;font-weight:700}
+.mireg svg{width:13px;height:13px;flex:none}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#503f49;color:#fff;padding:10px 16px;border-radius:22px;font-size:13px;z-index:20;box-shadow:0 5px 20px #0002;opacity:0;pointer-events:none;transition:opacity .2s;max-width:88vw;text-align:center}
+.toast.show{opacity:1}
+
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important}}
+@media(min-width:600px){.section,.frase{margin-left:0;margin-right:0}}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <h1>Mis rutinas ♡</h1>
+    <div class="sub" id="today">Un paso a la vez</div>
+    <div class="overview">
+      <div class="progress">
+        <a class="mini" href="#manana" aria-label="Ir a mi mañana">
+          <svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-day" class="active" style="--ring:#d5a02d" cx="24" cy="24" r="19"/></svg>
+          <span><strong>☀️ Mañana</strong><small id="count-day">0 de 17</small></span>
+        </a>
+        <a class="mini" href="#noche" aria-label="Ir a mi noche">
+          <svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-night" class="active" style="--ring:#d27c9d" cx="24" cy="24" r="19"/></svg>
+          <span><strong>🌙 Noche</strong><small id="count-night">0 de 11</small></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="frase">
+    <p id="frase">&nbsp;</p>
+    <span id="frase-tag">Hoy</span>
+  </div>
+
+  <section id="manana" class="section day">
+    <div class="sectiontop"><h2>☀️ Mi mañana</h2><span class="status" id="status-day">Lista para empezar</span></div>
+    <div class="track"><div class="fill" id="fill-day"></div></div>
+    <div id="list-day"></div>
+    <p class="note" id="note-day">Cada paso cuenta ✨</p>
+  </section>
+
+  <section id="noche" class="section night">
+    <div class="sectiontop"><h2>🌙 Mi noche</h2><span class="status" id="status-night">Lista para empezar</span></div>
+    <div class="track"><div class="fill" id="fill-night"></div></div>
+    <div id="list-night"></div>
+    <p class="note" id="note-night">Tu descanso también es un logro ♡</p>
+  </section>
+
+  <section id="historial" class="section hist">
+    <div class="sectiontop">
+      <h2>✦ Mi historial</h2>
+      <span class="status" id="status-hist">Todo lo que has hecho</span>
+    </div>
+
+    <div class="mesnav">
+      <button type="button" id="hist-prev" aria-label="Mes anterior">‹</button>
+      <div class="mid">
+        <strong id="hist-nombre">Noviembre 2026</strong>
+        <small>Mis rutinas de mañana y de noche</small>
+      </div>
+      <button type="button" id="hist-next" aria-label="Mes siguiente">›</button>
+    </div>
+
+    <table class="hoja">
+      <thead>
+        <tr>
+          <th class="izq">Día</th>
+          <th>Mañana</th>
+          <th>Noche</th>
+        </tr>
+      </thead>
+      <tbody id="hist-body"></tbody>
+    </table>
+
+    <div class="resumen" id="resumen-hist"></div>
+    <p class="note" id="note-hist">Nada se borra. Todo queda ♡</p>
+  </section>
+
+  <section id="reto" class="section reto">
+    <div class="sectiontop">
+      <h2>❄ Mi reto</h2>
+      <span class="status" id="status-reto">Día 1 de 183</span>
+    </div>
+    <div class="track"><div class="fill" id="fill-reto"></div></div>
+
+    <div class="mesnav">
+      <button type="button" id="mes-prev" aria-label="Mes anterior">‹</button>
+      <div class="mid">
+        <strong id="mes-nombre">Octubre 2026</strong>
+        <small>4 de noviembre de 2026 al 27 de abril de 2027</small>
+      </div>
+      <button type="button" id="mes-next" aria-label="Mes siguiente">›</button>
+    </div>
+
+    <table class="hoja">
+      <thead>
+        <tr>
+          <th class="izq">Día</th>
+          <th>Comida</th>
+          <th>Ejercicio</th>
+          <th>Peso kg</th>
+        </tr>
+      </thead>
+      <tbody id="hoja-body"></tbody>
+    </table>
+
+    <p class="hoja-nota">Peso: cada lunes con mi nutrióloga.</p>
+
+    <div class="resumen" id="resumen"></div>
+    <p class="note" id="note-reto">Dos palomitas al día. Nada más.</p>
+  </section>
+
+  <div class="footer">
+    ✓ Cada cambio se guarda solo.<br>
+    Las rutinas comienzan de nuevo cada día, hora de León.<br>
+    <button id="help" type="button">¿Cómo funciona?</button>
+  </div>
+
+  <div class="mireg">
+    <a href="#historial">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h18v18H3z"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg>
+      Ver mi historial
+    </a>
+  </div>
+
+</main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script>
 'use strict';
+
+/* ===========================================================
+   CONFIGURACIÓN
+   Pega aquí, entre las comillas, la URL de la app web de
+   Apps Script (la que termina en /exec).
+   =========================================================== */
+const SHEET_URL = "";
+
+const INICIO = '2026-11-04';
+const FIN    = '2027-04-27';
+const PESO_DESDE = INICIO;
+
 const DAY=[
-['2:00 a. m.','Despertar',''],['2:00–2:30','Meditación','30 minutos'],['2:30–2:45','Estiramientos','15 minutos'],['2:45–3:00','Cambiarme y prepararme para entrenar',''],['3:00–3:15','Ir por mis 2 L de agua y preparar mi café',''],['3:15–4:00','Tiempo tranquilo / Kindle',''],['4:00–4:30','Café final y alistarme para entrenar',''],['4:30–6:30','Gimnasio en casa','Fuerza / cardio / entrenamiento'],['6:30–6:50','Amanecer + grounding en el jardín','20 minutos'],['6:50–7:05','Luz infrarroja','15 minutos (cuerpo)'],['7:05–7:30','Sauna o vapor','25 minutos (según día)'],['7:30–7:50','Ducha',''],['7:50–8:20','Hidratación corporal',''],['8:20–8:50','NuFACE NuBODY','5 minutos por zona (abdomen, glúteos, muslos y brazos)'],['8:50–9:20','Tomar 30 minutos de sol','Para sintetizar vitamina D'],['9:20–9:50','Skincare de mañana',''],['9:50 en adelante','Continuar con mi día','']];
+['2:00 a. m.','Despertar',''],
+['2:00–2:30','Meditación','30 minutos'],
+['2:30–2:45','Estiramientos','15 minutos'],
+['2:45–3:00','Cambiarme y prepararme para entrenar',''],
+['3:00–3:15','Ir por mis 2 L de agua y preparar mi café',''],
+['3:15–4:00','Tiempo tranquilo / Kindle',''],
+['4:00–4:30','Café final y alistarme para entrenar',''],
+['4:30–6:30','Gimnasio en casa','Fuerza / cardio / entrenamiento'],
+['6:30–6:50','Amanecer + grounding en el jardín','20 minutos'],
+['6:50–7:05','Luz infrarroja','15 minutos (cuerpo)'],
+['7:05–7:30','Sauna o vapor','25 minutos (según día)'],
+['7:30–7:50','Ducha',''],
+['7:50–8:20','Hidratación corporal',''],
+['8:20–8:50','NuFACE NuBODY','5 minutos por zona (abdomen, glúteos, muslos y brazos)'],
+['8:50–9:20','Tomar 30 minutos de sol','Para sintetizar vitamina D'],
+['9:20–9:50','Skincare de mañana',''],
+['9:50 en adelante','Continuar con mi día','']];
+
 const NIGHT=[
-['2:00–2:30 p. m.','Inicio de rutina · Bajar estimulación','Luces cálidas moderadas-bajas · Lentes amarillos'],['2:30–3:00 p. m.','Actividades tranquilas · Preparar ambiente','Luces cálidas tenues · Lentes amarillos'],['3:00–3:30 p. m.','Ducha','Luces cálidas muy tenues · Lentes ámbar'],['3:30–4:00 p. m.','Máscara FAQ 202','Luces cálidas tenues · Lentes ámbar'],['4:00–4:30 p. m.','Skincare','Apagar luces cálidas · Encender luces rojas · Cerrar blackout · Lentes rojos'],['4:30–4:45 p. m.','Stretching relajante','15 minutos · Solo luces rojas · Lentes rojos'],['4:45–5:00 p. m.','Actividad tranquila','Opcional: lectura o música suave · Luces rojas · Lentes rojos'],['5:00–5:30 p. m.','Cena','Cena ligera · Luces rojas · Lentes rojos'],['5:30–5:45 p. m.','Higiene final · Preparar CPAP y recámara','Luces rojas muy tenues · Lentes rojos'],['5:45–6:00 p. m.','En cama · Relajación','Apagar luces · Blackout · Lentes rojos solo si necesitas ver una pantalla'],['6:00 p. m.','Dormir','Oscuridad total · Sin lentes']];
-const lists={day:DAY,night:NIGHT};let dateKey='';let state={day:[],night:[]};const fmt=new Intl.DateTimeFormat('en-CA',{timeZone:'America/Mexico_City',year:'numeric',month:'2-digit',day:'2-digit'});function dateNow(){const p=fmt.formatToParts(new Date());const o=Object.fromEntries(p.map(x=>[x.type,x.value]));return `${o.year}-${o.month}-${o.day}`;}function key(){return 'xime-rutinas-v1:'+dateKey;}function load(){dateKey=dateNow();try{const raw=JSON.parse(localStorage.getItem(key())||'{}');state={day:DAY.map((_,i)=>raw.day?.[i]===true),night:NIGHT.map((_,i)=>raw.night?.[i]===true)};}catch(e){state={day:DAY.map(()=>false),night:NIGHT.map(()=>false)};}document.getElementById('today').textContent=new Intl.DateTimeFormat('es-MX',{timeZone:'America/Mexico_City',weekday:'long',day:'numeric',month:'long'}).format(new Date());}function save(){try{localStorage.setItem(key(),JSON.stringify(state));return true;}catch(e){show('No se pudo guardar. Revisa el espacio disponible.');return false;}}let toastTimer;function show(t){const el=document.getElementById('toast');el.textContent=t;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),1900);}function rollover(){if(dateNow()!==dateKey){load();render();show('Nuevo día, nuevas oportunidades ♡');}}function render(){for(const kind of ['day','night']){const arr=lists[kind],box=document.getElementById('list-'+kind);box.replaceChildren();arr.forEach(([time,name,detail],i)=>{const b=document.createElement('button');b.type='button';b.className='item'+(state[kind][i]?' done':'');b.setAttribute('aria-pressed',String(state[kind][i]));const c=document.createElement('span');c.className='check';c.textContent=state[kind][i]?'✓':'';c.setAttribute('aria-hidden','true');const t=document.createElement('span');const tm=document.createElement('div');tm.className='time';tm.textContent=time;const nm=document.createElement('div');nm.className='name';nm.textContent=name;t.append(tm,nm);if(detail){const d=document.createElement('div');d.className='detail';d.textContent=detail;t.append(d);}b.append(c,t);b.addEventListener('click',()=>{rollover();const before=state[kind][i];state[kind][i]=!before;if(!save()){state[kind][i]=before;return;}render();if(!before){const n=state[kind].filter(Boolean).length;if(n===arr.length)show('¡Círculo cerrado! ✨');else if(n===Math.ceil(arr.length/2))show('¡Ya vas por la mitad! 🌷');}});box.append(b);});const done=state[kind].filter(Boolean).length;document.getElementById('count-'+kind).textContent=`${done} de ${arr.length}`;document.getElementById('status-'+kind).textContent=done===arr.length?'¡Círculo cerrado! ✨':done===0?'Lista para empezar':`${arr.length-done} por hacer`;document.getElementById('fill-'+kind).style.width=(100*done/arr.length)+'%';const circumference=2*Math.PI*19;document.getElementById('ring-'+kind).setAttribute('stroke-dasharray',`${circumference*done/arr.length} ${circumference}`);document.getElementById('note-'+kind).textContent=done===arr.length?'¡Lo lograste! Disfruta este momento ♡':done>=Math.ceil(arr.length/2)?'Vas avanzando, a tu ritmo ✨':kind==='day'?'Cada paso cuenta ✨':'Tu descanso también es un logro ♡';}}document.getElementById('help').addEventListener('click',()=>alert('Toca cualquier actividad para marcarla o desmarcarla. Tus cambios se guardan automáticamente en este navegador. Al comenzar un nuevo día en León, ambas listas aparecen vacías. No borres los datos del navegador si quieres conservar el avance de hoy. Este archivo no sincroniza con otros dispositivos.'));document.getElementById('js-warning')?.remove();load();render();document.addEventListener('visibilitychange',()=>{if(!document.hidden)rollover();});window.addEventListener('focus',rollover);setInterval(rollover,60000);
-</script></body></html>
+['2:00–2:30 p. m.','Inicio de rutina · Bajar estimulación','Luces cálidas moderadas-bajas · Lentes amarillos'],
+['2:30–3:00 p. m.','Actividades tranquilas · Preparar ambiente','Luces cálidas tenues · Lentes amarillos'],
+['3:00–3:30 p. m.','Actividad tranquila','Luces cálidas muy tenues · Lentes ámbar'],
+['3:30–4:00 p. m.','Máscara FAQ 202','Luces cálidas tenues · Lentes ámbar'],
+['4:00–4:30 p. m.','Skincare','Apagar luces cálidas · Encender luces rojas · Cerrar blackout · Lentes rojos'],
+['4:30–4:45 p. m.','Stretching relajante','15 minutos · Solo luces rojas · Lentes rojos'],
+['4:45–5:00 p. m.','Actividad tranquila','Opcional: lectura o música suave · Luces rojas · Lentes rojos'],
+['5:00–5:30 p. m.','Cena','Cena ligera · Luces rojas · Lentes rojos'],
+['5:30–5:45 p. m.','Higiene final · Preparar CPAP y recámara','Luces rojas muy tenues · Lentes rojos'],
+['5:45–6:00 p. m.','En cama · Relajación','Apagar luces · Blackout · Lentes rojos solo si necesitas ver una pantalla'],
+['6:00 p. m.','Dormir','Oscuridad total · Sin lentes']];
+
+const FRASES=[
+'Hoy no se trata de ganas. Se trata de que dijiste que lo ibas a hacer.',
+'La constancia no grita. Solo aparece todos los días.',
+'No tienes que sentirte lista. Tienes que empezar.',
+'El día que menos quieras es el que más cuenta.',
+'Un día a la vez sigue siendo avanzar.',
+'La disciplina es quererte a largo plazo.',
+'No estás empezando de cero. Estás empezando con experiencia.',
+'Tu cuerpo aguanta mucho más de lo que tu cabeza le cree.',
+'Lo difícil de hoy es lo normal de dentro de un mes.',
+'No te midas por lo que falta. Mídete por lo que ya no abandonaste.',
+'Las decisiones pequeñas repetidas son las únicas que cambian algo.',
+'Cumplirte a ti misma también es una forma de respeto.',
+'Hoy solo tienes que ganarle al día de hoy.',
+'La motivación se acaba. El hábito no necesita permiso.',
+'Si hoy sale mal, mañana no empieza de cero. Solo sigue.',
+'Avanzar lento sigue siendo avanzar.',
+'No necesitas ser perfecta. Necesitas ser constante.',
+'Cada palomita es una promesa que te cumpliste.',
+'El progreso casi nunca se siente. Se nota después.',
+'Hazlo cansada. Hazlo con flojera. Pero hazlo.',
+'Nadie construye nada grande en un día. Lo construyen en muchos.',
+'Hoy es un voto a favor de la persona que quieres ser.',
+'Tu versión de dentro de seis meses depende de esta mañana.',
+'No se trata de ser dura contigo. Se trata de no rendirte.',
+'Lo que hoy cuesta, después se hace solo.',
+'Que el mal día no se convierta en mala semana.',
+'Estás más cerca que ayer. Eso ya es algo.',
+'Confía en el proceso incluso cuando no lo veas.',
+'La paciencia también es una forma de fuerza.',
+'Cada día que cumples le quitas poder a la duda.',
+'Un solo día no define nada. La suma sí.',
+'El cambio no se anuncia. Un día simplemente ya estás ahí.',
+'Date el mismo trato que le darías a alguien que amas.',
+'Pequeño y sostenido le gana a grande y abandonado.',
+'Lo que repites te construye.',
+'La incomodidad de hoy es la libertad de mañana.',
+'Avanza aunque sea un paso. Los pasos se acumulan.',
+'No compitas con nadie. Compite con la de ayer.',
+'El descanso también es parte del plan.',
+'Equivocarte no cancela el avance.',
+'Las cosas que valen la pena se construyen en silencio.',
+'Tu mejor esfuerzo de hoy es suficiente hoy.',
+'Nadie te va a aplaudir cada día. Apláudete tú.',
+'No se trata de nunca caer. Se trata de siempre volver.',
+'La versión fuerte de ti ya existe. La estás alcanzando.',
+'Celebra el día cumplido, aunque sea pequeño.',
+'Sigue aunque nadie lo note. Tú lo notas.',
+'La claridad llega caminando, no pensando.',
+'Lo único irreversible es dejar de intentarlo.',
+'Un día bueno no es casualidad. Es decisión.',
+'Haz hoy lo que agradecerás en marzo.',
+'La meta importa, pero hoy es lo único que puedes tocar.',
+'Levantarte a las 2 de la mañana ya es ganar algo.',
+'Lo que estás construyendo no se ve todavía. Existe igual.',
+'Hoy cuenta aunque no se sienta.',
+'Tu palabra contigo vale lo mismo que con los demás.',
+'Vuelve siempre. Esa es toda la fórmula.',
+'No necesitas un día perfecto. Necesitas uno más.',
+'El cuerpo cambia después. La decisión cambia ahora.',
+'Sigue. Nada más eso.'];
+
+const MESES = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const DIAS_CORTO = ['Dom','Lun','Mar','Mié','Jue','Vie','Sáb'];
+
+const lists = { day: DAY, night: NIGHT };
+let dateKey = '';
+let state = { day: [], night: [] };
+let mesActual = '';
+let mesHist = '';
+let toastTimer;
+const porEnviar = new Set();
+let envioTimer;
+
+/* ---------- fechas ---------- */
+const fmt = new Intl.DateTimeFormat('en-CA',{timeZone:'America/Mexico_City',year:'numeric',month:'2-digit',day:'2-digit'});
+function dateNow(){
+  const o = Object.fromEntries(fmt.formatToParts(new Date()).map(x=>[x.type,x.value]));
+  return `${o.year}-${o.month}-${o.day}`;
+}
+function aFecha(iso){const p=String(iso).split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function iso(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;}
+function difDias(a,b){return Math.round((aFecha(b)-aFecha(a))/86400000);}
+function esLunes(s){return aFecha(s).getDay()===1;}
+const TOTAL = difDias(INICIO,FIN)+1;
+
+/* ---------- almacenamiento ---------- */
+function key(d){return 'xime-rutinas-v1:'+d;}
+function leerDia(d){ try{ return JSON.parse(localStorage.getItem(key(d))||'{}')||{}; }catch(e){ return {}; } }
+function guardarDia(d,obj){
+  try{ localStorage.setItem(key(d), JSON.stringify(obj)); porEnviar.add(d); programarEnvio(); return true; }
+  catch(e){ show('No se pudo guardar. Revisa el espacio disponible.'); return false; }
+}
+function retoDe(d){ const r=leerDia(d); return Array.isArray(r.reto)?r.reto:[false,false]; }
+
+function load(){
+  dateKey = dateNow();
+  const raw = leerDia(dateKey);
+  state = { day: DAY.map((_,i)=>raw.day?.[i]===true), night: NIGHT.map((_,i)=>raw.night?.[i]===true) };
+  document.getElementById('today').textContent =
+    new Intl.DateTimeFormat('es-MX',{timeZone:'America/Mexico_City',weekday:'long',day:'numeric',month:'long'}).format(new Date());
+  if(!mesActual) mesActual = mesValido(dateKey.slice(0,7));
+}
+function guardarRutinas(){
+  const r = leerDia(dateKey);
+  return guardarDia(dateKey, { reto: Array.isArray(r.reto)?r.reto:[false,false], day: state.day, night: state.night, peso: r.peso||'' });
+}
+
+/* ---------- envío a la hoja ---------- */
+function programarEnvio(){
+  if(!SHEET_URL) return;
+  clearTimeout(envioTimer);
+  envioTimer = setTimeout(enviarTodo, 1500);
+}
+function cuerpo(d){
+  const r = leerDia(d), n = difDias(INICIO,d)+1, reto = Array.isArray(r.reto)?r.reto:[false,false];
+  return {
+    fecha:d, dia:(n>=1&&n<=TOTAL)?n:'',
+    comida:reto[0]===true, ejercicio:reto[1]===true, peso:r.peso||'',
+    manana:(r.day||[]).filter(Boolean).length, mananaTotal:DAY.length,
+    noche:(r.night||[]).filter(Boolean).length, nocheTotal:NIGHT.length,
+    ts:new Date().toISOString()
+  };
+}
+function enviarTodo(){
+  if(!SHEET_URL || !porEnviar.size) return;
+  const dias = Array.from(porEnviar);
+  dias.forEach(d=>{
+    const body = JSON.stringify(cuerpo(d));
+    fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body})
+      .then(r=>{ if(!r.ok) throw new Error('http'); porEnviar.delete(d); guardarPendientes(); })
+      .catch(()=>fetch(SHEET_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body})
+        .then(()=>{ porEnviar.delete(d); guardarPendientes(); })
+        .catch(()=>guardarPendientes()));
+  });
+}
+function guardarPendientes(){
+  try{ localStorage.setItem('xime-pendientes', JSON.stringify(Array.from(porEnviar))); }catch(e){}
+}
+function cargarPendientes(){
+  try{ (JSON.parse(localStorage.getItem('xime-pendientes')||'[]')||[]).forEach(d=>porEnviar.add(d)); }catch(e){}
+  if(porEnviar.size) enviarTodo();
+}
+
+/* ---------- avisos ---------- */
+function show(t){
+  const el=document.getElementById('toast');
+  el.textContent=t; el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>el.classList.remove('show'),1900);
+}
+function rollover(){
+  if(dateNow()!==dateKey){ const antes=mesActual; load(); if(antes!==mesActual) mesActual=mesValido(dateKey.slice(0,7)); render(); show('Nuevo día, nuevas oportunidades ♡'); }
+}
+
+/* ---------- frase ---------- */
+function pintarFrase(){
+  const n = Math.abs(difDias(INICIO, dateKey));
+  document.getElementById('frase').textContent = FRASES[n % FRASES.length];
+  document.getElementById('frase-tag').textContent = esLunes(dateKey) ? 'Lunes de pesaje' : 'Hoy';
+}
+
+/* ---------- la hoja del mes ---------- */
+function mesValido(m){
+  const min = INICIO.slice(0,7), max = FIN.slice(0,7);
+  if(m < min) return min;
+  if(m > max) return max;
+  return m;
+}
+function moverMes(paso){
+  const [y,m] = mesActual.split('-').map(Number);
+  const d = new Date(y, m-1+paso, 1);
+  mesActual = mesValido(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);
+  pintarHoja();
+}
+function pintarHoja(){
+  const [y,m] = mesActual.split('-').map(Number);
+  document.getElementById('mes-nombre').textContent =
+    MESES[m-1].charAt(0).toUpperCase()+MESES[m-1].slice(1)+' '+y;
+  document.getElementById('mes-prev').disabled = (mesActual <= INICIO.slice(0,7));
+  document.getElementById('mes-next').disabled = (mesActual >= FIN.slice(0,7));
+
+  const body = document.getElementById('hoja-body');
+  body.replaceChildren();
+  const ultimo = new Date(y, m, 0).getDate();
+
+  for(let d=1; d<=ultimo; d++){
+    const f = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    if(f < INICIO || f > FIN) continue;
+
+    const futuro = difDias(dateKey, f) > 0;
+    const reto = retoDe(f);
+    const tr = document.createElement('tr');
+    if(f === dateKey) tr.className = 'hoy';
+
+    const td1 = document.createElement('td');
+    td1.className = 'cdia';
+    const b = document.createElement('b'); b.textContent = String(d).padStart(2,'0');
+    const sp = document.createElement('span'); sp.textContent = DIAS_CORTO[aFecha(f).getDay()];
+    td1.append(b, sp);
+    tr.append(td1);
+
+    [0,1].forEach(idx=>{
+      const td = document.createElement('td');
+      td.className = 'ccheck';
+      const bt = document.createElement('button');
+      bt.type='button';
+      bt.className='toque'+(reto[idx]?' on':'');
+      bt.setAttribute('aria-pressed', String(!!reto[idx]));
+      bt.setAttribute('aria-label', (idx===0?'Comida ':'Ejercicio ')+d);
+      const c = document.createElement('span');
+      c.className='caja'; c.textContent = reto[idx] ? '✓' : '';
+      bt.append(c);
+      bt.addEventListener('click', ()=>{
+        rollover();
+        const r = leerDia(f);
+        const nuevo = Array.isArray(r.reto) ? r.reto.slice() : [false,false];
+        nuevo[idx] = !nuevo[idx];
+        if(!guardarDia(f, {reto:nuevo, day:r.day||[], night:r.night||[], peso:r.peso||''})) return;
+        pintarHoja(); pintarReto();
+        if(nuevo[0] && nuevo[1] && f===dateKey) show('¡Día del reto cumplido! ✨');
+      });
+      td.append(bt);
+      tr.append(td);
+    });
+
+    const td4 = document.createElement('td');
+    td4.className = 'cpeso';
+    if(esLunes(f) && f >= PESO_DESDE){
+      const inp = document.createElement('input');
+      inp.type='number'; inp.step='0.1'; inp.min='30'; inp.max='200';
+      inp.inputMode='decimal'; inp.className='ipeso'; inp.placeholder='kg';
+      inp.value = leerDia(f).peso || '';
+      inp.addEventListener('input', function(){
+        clearTimeout(this._t);
+        const val = this.value.trim();
+        this._t = setTimeout(()=>{
+          const r = leerDia(f);
+          guardarDia(f, {reto:Array.isArray(r.reto)?r.reto:[false,false], day:r.day||[], night:r.night||[], peso:val});
+        }, 600);
+      });
+      td4.append(inp);
+    }
+    tr.append(td4);
+    if(futuro) tr.style.opacity = '.55';
+    body.append(tr);
+  }
+}
+
+/* ---------- mi historial de rutinas ---------- */
+function minMesHist(){
+  let min = dateKey.slice(0,7);
+  try{
+    for(let i=0;i<localStorage.length;i++){
+      const k = localStorage.key(i);
+      if(!k || k.indexOf('xime-rutinas-v1:')!==0) continue;
+      const f = k.slice(16);
+      if(/^\d{4}-\d{2}-\d{2}$/.test(f) && f.slice(0,7) < min) min = f.slice(0,7);
+    }
+  }catch(e){}
+  return min;
+}
+function mesHistValido(m){
+  const min = minMesHist(), max = dateKey.slice(0,7);
+  if(m < min) return min;
+  if(m > max) return max;
+  return m;
+}
+function moverHist(paso){
+  const [y,m] = mesHist.split('-').map(Number);
+  const d = new Date(y, m-1+paso, 1);
+  mesHist = mesHistValido(`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`);
+  pintarHist();
+}
+function pintarHist(){
+  if(!mesHist) mesHist = mesHistValido(dateKey.slice(0,7));
+  const [y,m] = mesHist.split('-').map(Number);
+  document.getElementById('hist-nombre').textContent =
+    MESES[m-1].charAt(0).toUpperCase()+MESES[m-1].slice(1)+' '+y;
+  document.getElementById('hist-prev').disabled = (mesHist <= minMesHist());
+  document.getElementById('hist-next').disabled = (mesHist >= dateKey.slice(0,7));
+
+  const body = document.getElementById('hist-body');
+  body.replaceChildren();
+  const ultimo = new Date(y, m, 0).getDate();
+  let perfectos = 0, conAvance = 0, marcas = 0;
+
+  for(let d=1; d<=ultimo; d++){
+    const f = `${y}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    if(difDias(dateKey, f) > 0) continue;
+    const r = leerDia(f);
+    const nd = (r.day||[]).filter(Boolean).length;
+    const nn = (r.night||[]).filter(Boolean).length;
+    marcas += nd + nn;
+    if(nd + nn > 0) conAvance++;
+    if(nd === DAY.length && nn === NIGHT.length) perfectos++;
+
+    const tr = document.createElement('tr');
+    if(f === dateKey) tr.className = 'hoy';
+
+    const td1 = document.createElement('td');
+    td1.className = 'cdia';
+    const b = document.createElement('b'); b.textContent = String(d).padStart(2,'0');
+    const sp = document.createElement('span'); sp.textContent = DIAS_CORTO[aFecha(f).getDay()];
+    td1.append(b, sp);
+    tr.append(td1);
+
+    [[nd, DAY.length],[nn, NIGHT.length]].forEach(([hechos,total])=>{
+      const td = document.createElement('td');
+      td.className = 'cpill';
+      const p = document.createElement('span');
+      p.className = 'pill ' + (hechos===total ? 'full' : hechos>0 ? 'part' : 'cero');
+      p.textContent = hechos===total ? '✓ '+total : hechos+'/'+total;
+      td.append(p);
+      tr.append(td);
+    });
+    body.append(tr);
+  }
+
+  const box = document.getElementById('resumen-hist');
+  box.replaceChildren();
+  [[perfectos,'días completos'],[conAvance,'días con avance'],[marcas,'palomitas del mes']].forEach(([v,t])=>{
+    const dv=document.createElement('div');
+    const bb=document.createElement('b'); bb.textContent=v;
+    const ss=document.createElement('small'); ss.textContent=t;
+    dv.append(bb,ss); box.append(dv);
+  });
+
+  document.getElementById('note-hist').textContent =
+    perfectos>0 ? 'Llevas '+perfectos+(perfectos===1?' día completo este mes ✨':' días completos este mes ✨')
+    : conAvance>0 ? 'Cada palomita queda guardada ♡'
+    : 'Nada se borra. Todo queda ♡';
+}
+
+/* ---------- resumen del reto ---------- */
+function pintarReto(){
+  const n = difDias(INICIO, dateKey)+1;
+  const st = document.getElementById('status-reto');
+  if(n<1) st.textContent = 'Empieza el 4 de noviembre';
+  else if(n>TOTAL) st.textContent = 'Reto completado ✨';
+  else st.textContent = 'Día '+n+' de '+TOTAL;
+  document.getElementById('fill-reto').style.width = Math.max(0,Math.min(100,(n/TOTAL)*100))+'%';
+
+  let completos=0, transcurridos=0, racha=0, mejor=0, actual=0;
+  for(let i=0;i<TOTAL;i++){
+    const f = iso(new Date(aFecha(INICIO).getFullYear(), aFecha(INICIO).getMonth(), aFecha(INICIO).getDate()+i));
+    if(difDias(dateKey,f) > 0) break;
+    transcurridos++;
+    const r = retoDe(f);
+    if(r[0]===true && r[1]===true){ completos++; racha++; if(racha>mejor) mejor=racha; }
+    else racha=0;
+  }
+  // racha actual: cuenta hacia atrás desde hoy; si hoy aún no está completo,
+  // no se rompe la racha, se cuenta hasta ayer.
+  actual = 0;
+  let cur = dateKey;
+  const rHoy = retoDe(dateKey);
+  if(!(rHoy[0]===true && rHoy[1]===true)){
+    const d = aFecha(dateKey); d.setDate(d.getDate()-1); cur = iso(d);
+  }
+  for(let i=0;i<400;i++){
+    if(difDias(INICIO, cur) < 0) break;
+    const r = retoDe(cur);
+    if(r[0]===true && r[1]===true){ actual++; const d=aFecha(cur); d.setDate(d.getDate()-1); cur=iso(d); }
+    else break;
+  }
+
+  const pct = transcurridos ? Math.round(100*completos/transcurridos) : 0;
+  const box = document.getElementById('resumen');
+  box.replaceChildren();
+  [[completos,'días completos'],[pct+'%','de cumplimiento'],[actual,'racha actual'],[mejor,'mejor racha']].forEach(([v,t])=>{
+    const d=document.createElement('div');
+    const b=document.createElement('b'); b.textContent=v;
+    const s=document.createElement('small'); s.textContent=t;
+    d.append(b,s); box.append(d);
+  });
+
+  const hoyR = retoDe(dateKey);
+  const hechos = (hoyR[0]===true?1:0)+(hoyR[1]===true?1:0);
+  document.getElementById('note-reto').textContent =
+    hechos===2 ? '¡Los dos! Hoy cuenta completo ✨'
+    : hechos===1 ? 'Vas a la mitad del día de hoy ♡'
+    : 'Dos palomitas al día. Nada más.';
+}
+
+/* ---------- rutinas ---------- */
+function render(){
+  for(const kind of ['day','night']){
+    const arr=lists[kind], box=document.getElementById('list-'+kind);
+    box.replaceChildren();
+    arr.forEach(([time,name,detail],i)=>{
+      const b=document.createElement('button');
+      b.type='button';
+      b.className='item'+(state[kind][i]?' done':'');
+      b.setAttribute('aria-pressed',String(state[kind][i]));
+      const c=document.createElement('span');
+      c.className='check'; c.textContent=state[kind][i]?'✓':''; c.setAttribute('aria-hidden','true');
+      const t=document.createElement('span');
+      const tm=document.createElement('div'); tm.className='time'; tm.textContent=time;
+      const nm=document.createElement('div'); nm.className='name'; nm.textContent=name;
+      t.append(tm,nm);
+      if(detail){const d=document.createElement('div');d.className='detail';d.textContent=detail;t.append(d);}
+      b.append(c,t);
+      b.addEventListener('click',()=>{
+        rollover();
+        const before=state[kind][i];
+        state[kind][i]=!before;
+        if(!guardarRutinas()){ state[kind][i]=before; return; }
+        render();
+        if(!before){
+          const n=state[kind].filter(Boolean).length;
+          if(n===arr.length) show('¡Círculo cerrado! ✨');
+          else if(n===Math.ceil(arr.length/2)) show('¡Ya vas por la mitad! 🌷');
+        }
+      });
+      box.append(b);
+    });
+    const done=state[kind].filter(Boolean).length;
+    document.getElementById('count-'+kind).textContent = `${done} de ${arr.length}`;
+    document.getElementById('status-'+kind).textContent =
+      done===arr.length ? '¡Círculo cerrado! ✨' : done===0 ? 'Lista para empezar' : `${arr.length-done} por hacer`;
+    document.getElementById('fill-'+kind).style.width = (100*done/arr.length)+'%';
+    const circ=2*Math.PI*19;
+    document.getElementById('ring-'+kind).setAttribute('stroke-dasharray',`${circ*done/arr.length} ${circ}`);
+    document.getElementById('note-'+kind).textContent =
+      done===arr.length ? '¡Lo lograste! Disfruta este momento ♡'
+      : done>=Math.ceil(arr.length/2) ? 'Vas avanzando, a tu ritmo ✨'
+      : kind==='day' ? 'Cada paso cuenta ✨' : 'Tu descanso también es un logro ♡';
+  }
+  pintarFrase();
+  pintarHist();
+  pintarHoja();
+  pintarReto();
+}
+
+document.getElementById('mes-prev').addEventListener('click',()=>moverMes(-1));
+document.getElementById('mes-next').addEventListener('click',()=>moverMes(1));
+document.getElementById('hist-prev').addEventListener('click',()=>moverHist(-1));
+document.getElementById('hist-next').addEventListener('click',()=>moverHist(1));
+
+document.getElementById('help').addEventListener('click',()=>alert(
+'Mi mañana y Mi noche son tus rutinas del día. Toca cada punto cuando lo hagas. Se reinician cada mañana.\n\n'+
+'Mi historial guarda todos los días anteriores: cuántos puntos hiciste de mañana y de noche en cada uno. Con las flechas te mueves de mes. Nada se borra.\n\n'+
+'Mi reto es tu hoja de siempre. Toca el cuadrito de Comida o Ejercicio en el renglón del día. Los lunes hay además un espacio para anotar tu peso, y puedes corregir días anteriores.\n\n'+
+'Todo se guarda solo en este teléfono.'));
+
+load();
+render();
+cargarPendientes();
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){rollover();cargarPendientes();}});
+window.addEventListener('focus',rollover);
+window.addEventListener('online',cargarPendientes);
+setInterval(rollover,60000);
+</script>
+</body>
+</html>
