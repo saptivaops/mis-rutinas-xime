@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#fffaf7">
+<meta name="theme-color" content="#fdfbf8">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Mis rutinas">
 <title>Mis rutinas · Xime</title>
@@ -30,19 +30,46 @@
 body{margin:0;background:var(--papel)}
 button{font:inherit}
 
-header{position:sticky;top:0;z-index:10;background:rgba(255,250,247,.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--borde);padding:12px 16px 10px}
+header{
+  position:sticky;top:0;z-index:10;
+  background:rgba(253,251,248,.94);
+  -webkit-backdrop-filter:blur(16px) saturate(1.15);backdrop-filter:blur(16px) saturate(1.15);
+  border-bottom:1px solid #ece2d4;
+  padding:15px 18px 12px;
+}
+header::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#d9b85f 18%,#c0962f 50%,#d9b85f 82%,transparent);
+  opacity:.75;
+}
 .wrap{max-width:650px;margin:auto}
-h1{font-family:Georgia,serif;font-size:25px;margin:0;color:var(--titulo);letter-spacing:-.5px}
-.sub{font-size:12px;color:var(--tinta-3);margin:3px 0 10px;text-transform:capitalize}
+
+.brand{display:flex;align-items:center;justify-content:center;gap:10px}
+h1{
+  font-family:"Didot","Bodoni 72","Hoefler Text",Georgia,serif;
+  font-size:21px;font-weight:400;margin:0;color:var(--verde);
+  letter-spacing:.17em;text-transform:uppercase;line-height:1;
+}
+.orn{color:var(--oro);font-size:11px;line-height:1;opacity:.95}
+.sub{
+  text-align:center;font-size:9px;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--tinta-3);margin:8px 0 0;font-weight:600;
+}
+.rule{height:1px;max-width:210px;margin:11px auto 12px;background:linear-gradient(90deg,transparent,#dcc49a,transparent)}
+
 .overview{display:flex;gap:10px;align-items:center}
-.progress{display:flex;gap:8px;flex:1}
-.mini{display:flex;align-items:center;gap:7px;flex:1;background:var(--tarjeta);border:1px solid #f2e2e6;border-radius:14px;padding:7px 9px;text-decoration:none;color:inherit;min-width:0}
-.ring{width:43px;height:43px;flex:none;transform:rotate(-90deg)}
-.ring circle{fill:none;stroke-width:6}
-.ring .base{stroke:#f3e7ea}
+.progress{display:flex;gap:9px;flex:1}
+.mini{
+  display:flex;align-items:center;gap:9px;flex:1;min-width:0;
+  background:#fffdf9;border:1px solid #e9ddc7;border-radius:9px;
+  padding:8px 11px;text-decoration:none;color:inherit;
+}
+.ring{width:36px;height:36px;flex:none;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:5}
+.ring .base{stroke:#efe6d6}
 .ring .active{stroke:var(--ring);stroke-linecap:round;transition:stroke-dasharray .3s ease}
-.mini strong{display:block;font-size:12px}
-.mini small{display:block;font-size:11px;color:var(--tinta-3)}
+.mini strong{display:block;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:var(--verde);font-weight:700}
+.mini small{display:block;font-family:Georgia,serif;font-size:13px;color:var(--tinta-2);margin-top:3px}
 
 /* ---------- frase ---------- */
 .frase{margin:15px 13px 0;padding:15px 16px;border-radius:18px;background:#fdf1f4;border:1px solid #f0d6de;text-align:center}
@@ -150,17 +177,22 @@ h1{font-family:Georgia,serif;font-size:25px;margin:0;color:var(--titulo);letter-
 
 <header>
   <div class="wrap">
-    <h1>Mis rutinas ♡</h1>
+    <div class="brand">
+      <span class="orn" aria-hidden="true">✦</span>
+      <h1>Mis rutinas</h1>
+      <span class="orn" aria-hidden="true">✦</span>
+    </div>
     <div class="sub" id="today">Un paso a la vez</div>
+    <div class="rule" aria-hidden="true"></div>
     <div class="overview">
       <div class="progress">
         <a class="mini" href="#manana" aria-label="Ir a mi mañana">
-          <svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-day" class="active" style="--ring:#d5a02d" cx="24" cy="24" r="19"/></svg>
-          <span><strong>☀️ Mañana</strong><small id="count-day">0 de 17</small></span>
+          <svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-day" class="active" style="--ring:#c0962f" cx="24" cy="24" r="19"/></svg>
+          <span><strong>Mañana</strong><small id="count-day">0 de 17</small></span>
         </a>
         <a class="mini" href="#noche" aria-label="Ir a mi noche">
-          <svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-night" class="active" style="--ring:#d27c9d" cx="24" cy="24" r="19"/></svg>
-          <span><strong>🌙 Noche</strong><small id="count-night">0 de 11</small></span>
+          <svg class="ring" viewBox="0 0 48 48"><circle class="base" cx="24" cy="24" r="19"/><circle id="ring-night" class="active" style="--ring:#1d5c44" cx="24" cy="24" r="19"/></svg>
+          <span><strong>Noche</strong><small id="count-night">0 de 11</small></span>
         </a>
       </div>
     </div>
@@ -229,7 +261,7 @@ h1{font-family:Georgia,serif;font-size:25px;margin:0;color:var(--titulo);letter-
       <button type="button" id="mes-prev" aria-label="Mes anterior">‹</button>
       <div class="mid">
         <strong id="mes-nombre">Octubre 2026</strong>
-        <small>4 de noviembre de 2026 al 27 de abril de 2027</small>
+        <small>9 de noviembre de 2026 al 27 de abril de 2027</small>
       </div>
       <button type="button" id="mes-next" aria-label="Mes siguiente">›</button>
     </div>
@@ -279,7 +311,7 @@ h1{font-family:Georgia,serif;font-size:25px;margin:0;color:var(--titulo);letter-
    =========================================================== */
 const SHEET_URL = "";
 
-const INICIO = '2026-11-04';
+const INICIO = '2026-11-09';
 const FIN    = '2027-04-27';
 const PESO_DESDE = INICIO;
 
@@ -653,7 +685,7 @@ function pintarHist(){
 function pintarReto(){
   const n = difDias(INICIO, dateKey)+1;
   const st = document.getElementById('status-reto');
-  if(n<1) st.textContent = 'Empieza el 4 de noviembre';
+  if(n<1) st.textContent = 'Empieza el 9 de noviembre';
   else if(n>TOTAL) st.textContent = 'Reto completado ✨';
   else st.textContent = 'Día '+n+' de '+TOTAL;
   document.getElementById('fill-reto').style.width = Math.max(0,Math.min(100,(n/TOTAL)*100))+'%';
